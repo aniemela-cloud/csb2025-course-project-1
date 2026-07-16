@@ -1,5 +1,0 @@
-GET http://localhost:3003/api/users
-
-###
-
-GET http://localhost:3003/api/users/6a3a848e118a4592637e4e5b
