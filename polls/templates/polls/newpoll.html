@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>New Poll</title>
+  </head>
+  <body>
+    <form action="{% url 'polls:create' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+        <legend><h1>New Poll</h1></legend>
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+          <label for="{{ form.question_text.id_for_label }}">
+            Your Question:
+          </label>
+          {{ form.question_text }} <sub>{{ form.question_text.errors }}</sub>
+        </div>
+        <div class="fieldWrapper">
+          <label for="{{ form.choice_1_text.id_for_label }}">Choice 1:</label>
+          {{ form.choice_1_text }} <sub> {{ form.choice_1_text.errors }}</sub>
+        </div>
+        <div class="fieldWrapper">
+          <label for="{{ form.choice_2_text.id_for_label }}">Choice 2:</label>
+          {{ form.choice_2_text }} <sub> {{ form.choice_2_text.errors }}</sub>
+        </div>
+        <div class="fieldWrapper">
+          <label for="{{ form.choice_3_text.id_for_label }}">Choice 3:</label>
+          {{ form.choice_3_text }} <sub> {{ form.choice_3_text.errors }}</sub>
+        </div>
+
+        {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+      </fieldset>
+      <input type="submit" value="Create" />
+    </form>
+  </body>
+</html>
