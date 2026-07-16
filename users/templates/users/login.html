@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+  </head>
+  <body>
+    <form action="{% url 'users:login' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+        <legend><h1>Login</h1></legend>
+        <table>
+          {{ form.as_div }}
+        </table>
+        {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+      </fieldset>
+      <input type="submit" value="Login" />
+    </form>
+  </body>
+</html>
