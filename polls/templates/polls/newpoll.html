@@ -14,22 +14,21 @@
           <label for="{{ form.question_text.id_for_label }}">
             Your Question:
           </label>
-          {{ form.question_text }} <sub>{{ form.question_text.errors }}</sub>
+          {{ form.question_text }}
         </div>
         <div class="fieldWrapper">
           <label for="{{ form.choice_1_text.id_for_label }}">Choice 1:</label>
-          {{ form.choice_1_text }} <sub> {{ form.choice_1_text.errors }}</sub>
+          {{ form.choice_1_text }}
         </div>
         <div class="fieldWrapper">
           <label for="{{ form.choice_2_text.id_for_label }}">Choice 2:</label>
-          {{ form.choice_2_text }} <sub> {{ form.choice_2_text.errors }}</sub>
+          {{ form.choice_2_text }}
         </div>
         <div class="fieldWrapper">
           <label for="{{ form.choice_3_text.id_for_label }}">Choice 3:</label>
-          {{ form.choice_3_text }} <sub> {{ form.choice_3_text.errors }}</sub>
+          {{ form.choice_3_text }}
         </div>
-
-        {% if error_message %}
+        {{ form.username }} {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
         {% endif %}
       </fieldset>
