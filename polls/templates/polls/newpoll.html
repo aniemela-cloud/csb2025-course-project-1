@@ -9,26 +9,10 @@
       {% csrf_token %}
       <fieldset>
         <legend><h1>New Poll</h1></legend>
-        {{ form.non_field_errors }}
-        <div class="fieldWrapper">
-          <label for="{{ form.question_text.id_for_label }}">
-            Your Question:
-          </label>
-          {{ form.question_text }}
-        </div>
-        <div class="fieldWrapper">
-          <label for="{{ form.choice_1_text.id_for_label }}">Choice 1:</label>
-          {{ form.choice_1_text }}
-        </div>
-        <div class="fieldWrapper">
-          <label for="{{ form.choice_2_text.id_for_label }}">Choice 2:</label>
-          {{ form.choice_2_text }}
-        </div>
-        <div class="fieldWrapper">
-          <label for="{{ form.choice_3_text.id_for_label }}">Choice 3:</label>
-          {{ form.choice_3_text }}
-        </div>
-        {{ form.username }} {% if error_message %}
+        <table>
+          {{ form.as_table }}
+        </table>
+        {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
         {% endif %}
       </fieldset>
