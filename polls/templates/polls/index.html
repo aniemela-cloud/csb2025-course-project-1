@@ -7,6 +7,11 @@
     <title>Polls list</title>
   </head>
   <body>
+    {% if request.COOKIES.username %}
+    <p><a href="{% url 'users:logout' %}">Logout</a></p>
+    {% else %}
+    <p><a href="{% url 'users:login' %}">Login</a></p>
+    {% endif %}
     <h1>Polls In System</h1>
     {% if latest_question_list %}
     <ul>
@@ -15,6 +20,9 @@
         <a href="{% url 'polls:detail' question.id %}"
           >{{ question.question_text }}</a
         >
+        by {{ question.username }} 
+        {% if request.COOKIES.username == question.username %} (Pretend there's a delete link here) 
+        {% endif %}
       </li>
       {% endfor %}
     </ul>
