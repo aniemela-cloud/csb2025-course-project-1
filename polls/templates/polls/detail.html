@@ -5,6 +5,11 @@
     <title>Poll details</title>
   </head>
   <body>
+    <!-- XXX Django's autoescape has been turned off as a simulated misconfiguration or
+     developer oversight -- or perhaps the developers intend to bring in data from another
+     data model which contains HTML, and instead of controlling only the autoescaping of that
+     single data source, they turn it of for everything. -->
+    {% autoescape off %}
     <form action="{% url 'polls:vote' question.id %}" method="post">
       {% csrf_token %}
       <fieldset>
@@ -26,5 +31,7 @@
       </fieldset>
       <input type="submit" value="Vote" />
     </form>
+    <!-- XXX Pairs with the bad "autoescape off" from the start of the HTML body -->
+    {% endautoescape %}
   </body>
 </html>

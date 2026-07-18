@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>New Poll (injection version)</title>
+  </head>
+  <body>
+    <form action="{% url 'polls:create_i' %}" method="get">
+      <fieldset>
+        <legend><h1>New Poll (GET version)</h1></legend>
+        <table>
+          <tbody>
+            <tr>
+              <th><label for="q-text-input">Poll question:</label></th>
+              <td>
+                <input 
+                  type="text"
+                  name="question_text"
+                  id="q-text-input"
+                  required
+                  maxlength="200"
+                  placeholder="Your poll question"
+                  />
+              </td>
+            </tr>
+            <tr>
+              <th><label for="c1-text-input">Option 1:</label></th>
+              <td>
+                <input 
+                  type="text"
+                  name="choice_1_text"
+                  id="c1-text-input"
+                  required
+                  maxlength="200"
+                  placeholder="First choice"
+                  />
+              </td>
+            </tr>
+            <tr>
+              <th><label for="c2-text-input">Option 2:</label></th>
+              <td>
+                <input 
+                  type="text"
+                  name="choice_2_text"
+                  id="c2-text-input"
+                  required
+                  maxlength="200"
+                  placeholder="Second choice"
+                  />
+              </td>
+            </tr>
+            <tr>
+              <th><label for="c3-text-input">Option 3:</label></th>
+              <td>
+                <input 
+                  type="text"
+                  name="choice_3_text"
+                  id="c3-text-input"
+                  maxlength="200"
+                  placeholder="Third choice (optional)"
+                  />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <input type="submit" value="Create" />
+    </form>
+  </body>
+</html>

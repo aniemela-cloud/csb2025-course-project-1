@@ -29,5 +29,8 @@
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
+    {% if request.COOKIES.username %}
+     <p><a href="{% url 'polls:create' %}">Add a new poll</a></p>
+    {% endif %}
   </body>
 </html>

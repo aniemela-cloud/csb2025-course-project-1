@@ -7,27 +7,24 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Create your views here.
 def loginForm(request):
   # if this is a POST request we need to process the form data
   formerror = False
-  logger.debug("Processing loginForm")
   if request.method == "POST":
     # create a form instance and populate it with data from the request:
-    logger.debug("> POST handling")
     form = LoginForm(request.POST)
     # check whether it's valid:
     if form.is_valid():
-      logger.debug(">> Form is valid, username=%s" % form.cleaned_data["username"])
       # Check if user exists
       try:
         user = User.objects.get(username__iexact=form.cleaned_data["username"])
-        logger.debug(">> User found")
         if user.check_password(form.cleaned_data["password"]):
           # Set user logged in token
           # redirect to a new URL:
-          logger.debug(">>> Password check passed")
           response = HttpResponseRedirect("/polls/")
+          # XXX Using a simple cookie to store the username as a form of
+          # session/login tracking is insufficient. It can easily be modified
+          # by the client. 
           response.set_cookie("username",form.cleaned_data["username"])
           return response
       except User.DoesNotExist:
@@ -40,5 +37,7 @@ def loginForm(request):
 
 def logoutView(request):
   response = HttpResponseRedirect("/polls/")
+  # XXX After the user session/login cookie is replaced with a better one,
+  # this needs to be updated to clear it.
   response.delete_cookie("username")
   return response

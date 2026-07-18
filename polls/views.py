@@ -28,20 +28,69 @@ class ResultsView(generic.DetailView):
 def newPollForm(request):
   # if this is a POST request we need to process the form data
   logger.debug('in newPollForm')
+  username = request.COOKIES.get('username',0)
+  if not username:
+    return HttpResponseRedirect("/polls/")
   if request.method == "POST":
     # create a form instance and populate it with data from the request:
     form = QuestionForm(request.POST)
-    logger.debug('POST form: username=%s' % form.fields["username"])
+    
     # check whether it's valid:
     if form.is_valid():
       # redirect to a new URL:
+      newpoll = Question(
+        question_text = form.cleaned_data["question_text"],
+        pub_date = timezone.now(),
+        username = form.cleaned_data["username"])
+      newpoll.save()
+      newpoll.choice_set.create(choice_text=form.cleaned_data["choice_1_text"], votes=0)
+      newpoll.choice_set.create(choice_text=form.cleaned_data["choice_2_text"], votes=0)
+      if form.cleaned_data["choice_3_text"]:
+        newpoll.choice_set.create(choice_text=form.cleaned_data["choice_3_text"], votes=0)
+      newpoll.save()
       return HttpResponseRedirect("/")
 
   # if a GET (or any other method) we'll create a blank form
   else:
-    form = QuestionForm(initial={"username":"user"})
+    form = QuestionForm(initial={"username":username})
 
   return render(request, "polls/newpoll.html", {"form": form})
+
+# XXX newPollInjectable breaks the rule of "GET requests must not have any side-effects".
+# Letting a GET request create a poll in the system means that it bypasses CSRF protection
+# 
+def newPollInjectable(request):
+  username = request.COOKIES.get('username',0)
+  if not username:
+    logger.debug('newPollInjectable: no username')
+    return HttpResponseRedirect("/polls/")
+  try:
+    question_text = request.GET.get("question_text")
+    choice_1_text = request.GET.get("choice_1_text")
+    choice_2_text = request.GET.get("choice_2_text")
+  except KeyError:
+    # XXX We also lose the provided GET parameters, but that is
+    # not important for highlighting the security vulnerability.
+    logger.debug('newPollInjectable: request.GET KeyError')
+    return render(request, "polls/newpoll_injection.html")
+  choice_3_text = request.GET.get("choice_3_text", None)
+  if question_text:
+    newpoll = Question(
+      question_text = question_text,
+      pub_date = timezone.now(),
+      username = username)
+    newpoll.save()
+    if choice_1_text:
+      newpoll.choice_set.create(choice_text=choice_1_text)
+    if choice_2_text:
+      newpoll.choice_set.create(choice_text=choice_2_text)
+    if choice_3_text:
+      newpoll.choice_set.create(choice_text=choice_3_text)
+    newpoll.save()
+    return HttpResponseRedirect("/")
+  else:
+    return render(request, "polls/newpoll_injection.html")
+  
 
 def vote(request, question_id):
   question = get_object_or_404(Question, pk=question_id)
