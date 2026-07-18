@@ -7,10 +7,16 @@
     <title>Polls list</title>
   </head>
   <body>
-    {% if request.COOKIES.username %}
-    <p><a href="{% url 'users:logout' %}">Logout</a></p>
+    {% if user.is_authenticated %}
+    <p>
+    <form action="{% url 'logout' %}" method="post">
+      Hello {{ user.username }}
+      {% csrf_token %}
+      <button type="submit">Log Out</button>
+    </form>
+    </p>
     {% else %}
-    <p><a href="{% url 'users:login' %}">Login</a></p>
+    <p><a href="/accounts/login/">Login</a></p>
     {% endif %}
     <h1>Polls In System</h1>
     {% if latest_question_list %}
@@ -21,7 +27,7 @@
           >{{ question.question_text }}</a
         >
         by {{ question.username }} 
-        {% if request.COOKIES.username == question.username %} (Pretend there's a delete link here) 
+        {% if user.username == question.username %} (Pretend there's a delete link here) 
         {% endif %}
       </li>
       {% endfor %}
@@ -29,7 +35,7 @@
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
-    {% if request.COOKIES.username %}
+    {% if user.is_authenticated %}
      <p><a href="{% url 'polls:create' %}">Add a new poll</a></p>
     {% endif %}
   </body>
