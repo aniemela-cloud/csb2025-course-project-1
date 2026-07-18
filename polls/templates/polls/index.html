@@ -13,7 +13,7 @@
     {% else %}
       <p><a href="{% url 'users:login' %}">Login</a></p>
     {% endif %}
-<!-- XXX Fix for A01:2021, A02:2021, and A07:2021
+<!-- XXX Fix for A01:2021, A02:2021, and A07:2021 {% comment %}
     {% if user.is_authenticated %}
     <p>
     <form action="{% url 'logout' %}" method="post">
@@ -24,7 +24,8 @@
     </p>
     {% else %}
       <p><a href="/accounts/login/">Login</a></p>
-    {% endif %} -->
+    {% endif %} 
+    {% endcomment %}-->
     <h1>Polls In System</h1>
     {% if latest_question_list %}
     <ul>
