@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+# XXX FLAW 3 fix:
+    'django_smart_ratelimit'    
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+# XXX FLAW 3 fix:
+    'django_smart_ratelimit.middleware.RateLimitMiddleware',
 ]
 
 ROOT_URLCONF = 'csb2025.urls'

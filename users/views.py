@@ -1,5 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+# XXX FLAW 3 FIX
+from django_smart_ratelimit import ratelimit
 from .forms import LoginForm
 from .models import User
 
@@ -7,6 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+@ratelimit(key='ip', rate='10/m', block=True)
 def loginForm(request):
   # if this is a POST request we need to process the form data
   formerror = False
