@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from .models import Choice, Question
 from .forms import QuestionForm
 import logging
@@ -25,23 +26,25 @@ class ResultsView(generic.DetailView):
   model = Question
   template_name = "polls/results.html"
 
+@login_required(login_url="/accounts/login/")
 def newPollForm(request):
-  # if this is a POST request we need to process the form data
-  logger.debug('in newPollForm')
-  username = request.COOKIES.get('username',0)
-  if not username:
+  # This is probably not required thanks to the login_required decorator
+  # But I'm leaving it in as a reminder.
+  if not request.user.is_authenticated:
     return HttpResponseRedirect("/polls/")
+  username = request.user.username
+  # Respond to a POST request
   if request.method == "POST":
     # create a form instance and populate it with data from the request:
     form = QuestionForm(request.POST)
-    
     # check whether it's valid:
     if form.is_valid():
       # redirect to a new URL:
       newpoll = Question(
         question_text = form.cleaned_data["question_text"],
         pub_date = timezone.now(),
-        username = form.cleaned_data["username"])
+        username = username # XXX Use the username from the Django user object
+      )
       newpoll.save()
       newpoll.choice_set.create(choice_text=form.cleaned_data["choice_1_text"], votes=0)
       newpoll.choice_set.create(choice_text=form.cleaned_data["choice_2_text"], votes=0)
@@ -52,13 +55,13 @@ def newPollForm(request):
 
   # if a GET (or any other method) we'll create a blank form
   else:
-    form = QuestionForm(initial={"username":username})
+    form = QuestionForm()
 
   return render(request, "polls/newpoll.html", {"form": form})
 
 # XXX newPollInjectable breaks the rule of "GET requests must not have any side-effects".
 # Letting a GET request create a poll in the system means that it bypasses CSRF protection
-# 
+# This view is not modified to use the Django authentication system, and is left as-is.
 def newPollInjectable(request):
   username = request.COOKIES.get('username',0)
   if not username:
