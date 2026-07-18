@@ -17,12 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
-from django.contrib.auth import views as auth_views
+# XXX Fix for A01:2021 / A02:2021 / A07:2021
+#from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', RedirectView.as_view(url='polls/', permanent=True)),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
-    path("accounts/login/", auth_views.LoginView.as_view(next_page='/polls/'), name='login'),
-    path("accounts/logout/", auth_views.LogoutView.as_view(next_page='/polls/'), name='logout')
+    # XXX Naive user login and user model
+    path('users/', include('users.urls')),
+    # XXX Fix for A01:2021 / A02:2021 / A07:2021
+    #path("accounts/login/", auth_views.LoginView.as_view(next_page='/polls/'), name='login'),
+    #path("accounts/logout/", auth_views.LogoutView.as_view(next_page='/polls/'), name='logout')
 ]

@@ -4,7 +4,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
+# XXX A01/A02/A07 fix: decorator for requiring login for new poll
+#from django.contrib.auth.decorators import login_required
 from .models import Choice, Question
 from .forms import QuestionForm
 import logging
@@ -25,15 +26,19 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
   model = Question
   template_name = "polls/results.html"
-
-@login_required(login_url="/accounts/login/")
+# XXX A01/A02/A07 fix: Uses Django auth to ensure the user is
+# authenticated for creating new polls
+#@login_required(login_url="/accounts/login/")
 def newPollForm(request):
-  # This is probably not required thanks to the login_required decorator
-  # But I'm leaving it in as a reminder.
-  if not request.user.is_authenticated:
+  # XXX A01: Using an unencrypted cookie for user access control
+  username = request.COOKIES.get('username',0)
+  # XXX A01/A02/A07 fix: 
+  # username = request.user.username
+
+  if not username:
+    # Unnecessary if the login_required decorator is in use
     return HttpResponseRedirect("/polls/")
-  username = request.user.username
-  # Respond to a POST request
+  
   if request.method == "POST":
     # create a form instance and populate it with data from the request:
     form = QuestionForm(request.POST)
@@ -43,7 +48,7 @@ def newPollForm(request):
       newpoll = Question(
         question_text = form.cleaned_data["question_text"],
         pub_date = timezone.now(),
-        username = username # XXX Use the username from the Django user object
+        username = username # Either from the cookie (bad) or the Django user object (good)
       )
       newpoll.save()
       newpoll.choice_set.create(choice_text=form.cleaned_data["choice_1_text"], votes=0)

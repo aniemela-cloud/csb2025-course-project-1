@@ -7,6 +7,13 @@
     <title>Polls list</title>
   </head>
   <body>
+<!-- XXX This is the naive cookie-based login -->     
+    {% if request.COOKIES.username %}
+      <p><a href="{% url 'users:logout' %}">Logout</a></p>
+    {% else %}
+      <p><a href="{% url 'users:login' %}">Login</a></p>
+    {% endif %}
+<!-- XXX Fix for A01:2021, A02:2021, and A07:2021
     {% if user.is_authenticated %}
     <p>
     <form action="{% url 'logout' %}" method="post">
@@ -16,8 +23,8 @@
     </form>
     </p>
     {% else %}
-    <p><a href="/accounts/login/">Login</a></p>
-    {% endif %}
+      <p><a href="/accounts/login/">Login</a></p>
+    {% endif %} -->
     <h1>Polls In System</h1>
     {% if latest_question_list %}
     <ul>
@@ -35,8 +42,15 @@
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
+<!-- XXX The naive login check for creating new polls -->
+    {% if request.COOKIES.username %}
+      <p><a href="{% url 'polls:create' %}">Add a new poll</a></p>
+    {% endif %}     
+
+    <!-- XXX Part of fix for A01/A02/A07
     {% if user.is_authenticated %}
      <p><a href="{% url 'polls:create' %}">Add a new poll</a></p>
     {% endif %}
+    -->    
   </body>
 </html>
