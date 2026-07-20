@@ -28,7 +28,7 @@ An extremely naive login implementation relies on setting an unsigned browser co
 - Only cookie checked to verify access to posting a new poll
 [/polls/views.py#L46](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/views.py#L46)
 - Naive cookie set after logging in
-[/users/views.py#L31](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/views.py#L31)
+[/users/views.py#L32](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/views.py#L32)
 - Login / logout links showed based on naive cookie
 [/polls/templates/polls/index.html#L11](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/index.html#L11)
 - Poll list shows a link to create a new poll based on cookie:
@@ -65,7 +65,7 @@ The password hash for users is stored as an (unsalted) MD5 hash. MD5 is not suit
 The User model needs to be modified to include the salt value used for the user’s password hashing, and the hashing method needs to be changed to something more secure, such as scrypt or pbkdf2_hmac provided by the Python hashlib module. However, the Django user system already uses pbkdf2_hmac for password hashing, so replacing the self-made naive implementation with the provided Django implementation is perhaps the easiest fix.
 
 - Replacing the naive user model and login with Django's built-in model and login
-[/users/models.py#L23](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/models.py#L23)
+[/csb2025/urls.py#L21](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/csb2025/urls.py#L21)
 [/csb2025/urls.py#L32](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/csb2025/urls.py#L32)
 (Note that the definition of the login view also includes the access rate limit from the fix for flaw 3.)
 - A basic login form for the built-in model
@@ -80,7 +80,7 @@ The naive login form does not perform any timeout or rate limiting checks, enabl
 - The login form has no rate limiting implemented
 [/users/views.py#L14](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/views.py#L14)
 
-Using the hackpassword.py script with some modifications to brute force the password takes approximately 5 seconds.
+Using the [hackpassword.py](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/hackpassword.py) script from the Securing Software course with some modifications to brute force the password takes approximately 5 seconds.
 
 ![hackpassword.py finds the password](/screenshots/flaw-3-before-1.png)
 *hackpassword.py finds the password*
@@ -117,6 +117,7 @@ The system is designed to fetch dynamic content from the database to display. Si
 
 ![View from admin page showing html and Javascript in the poll data](/screenshots/flaw-4-before-1.png)
 *View from admin page showing html and Javascript in the poll data*
+
 ![YOU ARE HACKED](/screenshots/flaw-4-before-2.png)
 *YOU ARE HACKED*
 
@@ -151,6 +152,7 @@ Unfortunately, a developer who is too clever for their own good and who for some
 
 ![GET form accessed by manually crafting an URL, guaranteeing there's no CSRF token in the "form"](/screenshots/flaw-5-before-1.png)
 *GET form accessed by manually crafting an URL, guaranteeing there's no CSRF token in the "form"*
+
 ![The bypass worked and the new question is in the database](/screenshots/flaw-5-before-2.png)
 *The bypass worked and the new question is in the database*
 
@@ -158,7 +160,9 @@ The fix for this flaw is simple: Do not implement GET requests that have side-ef
 
 ![Attempting the GET bypass on the POST method form.](/screenshots/flaw-5-after-1.png)
 *Attempting the GET bypass on the POST method form.*
+
 ![The attempt only opens the form.](/screenshots/flaw-5-after-2.png)
 *The attempt only opens the form.*
+
 ![And the HELLO WORLD poll has not been added.](/screenshots/flaw-5-after-3.png)
 *And the HELLO WORLD poll has not been added.*
