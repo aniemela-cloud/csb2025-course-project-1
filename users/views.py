@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-# XXX FLAW 3 FIX
-from django_smart_ratelimit import ratelimit
+# XXX FLAW 3 FIX demonstration for even the naive login form
+# from django_smart_ratelimit import ratelimit
 from .forms import LoginForm
 from .models import User
 
@@ -9,7 +9,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-@ratelimit(key='ip', rate='10/m', block=True)
+# XXX FLAW 3 fix demonstration for even the naive login form
+# @ratelimit(key='ip', rate='10/m', block=True)
 def loginForm(request):
   # if this is a POST request we need to process the form data
   formerror = False
@@ -36,7 +37,7 @@ def loginForm(request):
   else:
     form = LoginForm()
 
-  return render(request, "users/login.html", {"form": form, "error":formerror})
+  return render(request, "users/login.html", {"form": form, "loginerror":formerror})
 
 def logoutView(request):
   response = HttpResponseRedirect("/polls/")

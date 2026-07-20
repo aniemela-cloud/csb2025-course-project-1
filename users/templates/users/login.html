@@ -9,6 +9,9 @@
       {% csrf_token %}
       <fieldset>
         <legend><h1>Login</h1></legend>
+        {% if loginerror %}
+        <p><strong>{{ loginerror }}</strong></p>
+        {% endif %}
         <table>
           {{ form.as_div }}
         </table>
