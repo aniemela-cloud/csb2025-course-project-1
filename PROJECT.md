@@ -10,59 +10,113 @@ Instructions for running the code:
 
 An extremely naive login implementation relies on setting an unsigned browser cookie with no server-side tracking or verification when a user successfully logs in, and uses the cookie to check access rights. This leaves the system vulnerable for client-side manipulation of access rights by simply modifying the cookie.
 
-- Only cookie checked to verify access to posting a new poll
-[https://github.com/aniemela-cloud/csb2025-course-project-1/blob/a5d1a19ca55e6c885fd7d985c5a1252f2cedd2c3/polls/views.py#L46]
-- Naive cookie set after logging in
-[https://github.com/aniemela-cloud/csb2025-course-project-1/blob/a5d1a19ca55e6c885fd7d985c5a1252f2cedd2c3/users/views.py#L31]
-- Poll list shows a link to create a new poll based on cookie:
-https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/index.html#L47
+[flaw-1-before-1.png: User not logged in]
+[flaw-1-before-2.png: Logging in with testuser]
+[flaw-1-before-3.png: Logged in as testuser]
+[flaw-1-before-4.png: Modifying username cookie to become otheruser]
+[flaw-1-before-5.png: Dummy delete link shows they're now logged in as otheruser]
 
-// polls/views.py:newPollForm
-// users/views.py:loginForm
-And
-// polls/templates/index.html
+- Only cookie checked to verify access to posting a new poll
+[/polls/views.py#L46](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/views.py#L46)
+- Naive cookie set after logging in
+[/users/views.py#L31](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/views.py#L31)
+- Login / logout links showed based on naive cookie
+[/polls/templates/polls/index.html#L11](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/index.html#L11)
+- Poll list shows a link to create a new poll based on cookie:
+[/polls/templates/polls/index.html#L55](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/index.html#L55)
 
 If the authentication and session control need to be implemented manually without using the Django authentication module, the session cookie should be changed to e.g. a token signed with an appropriate cryptographic method, with appropriate expiration included in the token to lessen the impact of any cookie hijacking. However, I opted to use the Django user authentication module, as it is more likely to be robust compared to an individual developer’s own ideas.
-Using the user object for checking the currently authenticated user:
-// polls/views.py:newPollForm
-// polls/templates/index.html
+
+[flaw-1-after-1.png: Logging in as djangotest using the Django login]
+[flaw-1-after-2.png: No client-side login information cookie]
+
+- Using Django's "login required"-decorator for access control
+[/polls/views.py#L43](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/views.py#L43)
+- Reading the logged in user's username from the Django user object instead of a cookie
+[/polls/views.py#L48](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/views.py#L48)
+- Login / logout links based on whether we have an authenticated user
+[main/polls/templates/polls/index.html#L17](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/index.html#L17)
+- Showing the link to the new poll form based on having an authenticated user
+[/polls/templates/polls/index.html#L60](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/index.html#L60)
 
 ## FLAW 2: Flawed Password Hash
 
 ### A02:2021 – Cryptographic Failures
 
-The password hash for users is stored as an (unsalted) MD5 hash. MD5 is not suited for use as a cryptographic hash function.
-// users/models.py:User
+(Note that there are no screenshots, as it's not really possible to take screenshots of a hash function? A link to a massive MD5 lookup table has been provided, instead.)
+
+The password hash for users is stored as an (unsalted) MD5 hash. MD5 is not suited for use as a hash function for passwords, as it both suffers from hash collisions and pre-computed lookup tables already exist for finding the matching password for a MD5 hash for [billions of possible passwords](https://crackstation.net/).
+
+- Using MD5 as the password hash
+[/users/models.py#L23](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/models.py#L23)
 
 The User model needs to be modified to include the salt value used for the user’s password hashing, and the hashing method needs to be changed to something more secure, such as scrypt or pbkdf2_hmac provided by the Python hashlib module. However, the Django user system already uses pbkdf2_hmac for password hashing, so replacing the self-made naive implementation with the provided Django implementation is perhaps the easiest fix.
 
-// urls.py: imports and path changes in urlpatterns
-// adding polls/templates/registration/login.html
+- Replacing the naive user model and login with Django's built-in model and login
+[/users/models.py#L23](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/models.py#L23)
+[/csb2025/urls.py#L32](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/csb2025/urls.py#L32)
+(Note that the definition of the login view also includes the access rate limit from the fix for flaw 3.)
+- A basic login form for the built-in model
+[/polls/templates/registration/login.html](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/registration/login.html)
 
 ## FLAW 3: Weak Login Page
 
 ### A07:2021 – Identification and Authentication Failures
 
 The naive login form does not perform any timeout or rate limiting checks, enabling a credential stuffing or brute force attack. This is further exacerbated by the MD5 hash function being fast: Checking a password for a match takes practically no time compared to e.g. using a SHA-256 function 100,000 times in a row, a default for the Django pbkdf2_hmac implementation.
-// users/views.py:loginForm
+
+- The login form has no rate limiting implemented
+[/users/views.py#L14](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/views.py#L14)
 
 Using the hackpassword.py script with some modifications to brute force the password takes approximately 4 seconds.
 
+[PICTURE 3_1: hackpassword.py result]
+
 Unfortunately the default Django authentication implementation does not have any rate limiting options, either. Rate limiting could be performed at the HTTP server, but I am choosing to use an optional Django module called django-smart-ratelimit.
-// settings.py: INSTALLED_APPS
-// settings.py: MIDDLEWARE
+
+- Added to INSTALLED_APPS after running pip install
+[/csb2025/settings.py#L43](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/csb2025/settings.py#L43)
+- And added to MIDDLEWARE
+[/csb2025/settings.py#L55](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/csb2025/settings.py#L55)
+- Demonstrating the rate limiting with the naive login form
+[/users/views.py#L4](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/views.py#L4)
+[/users/views.py#L13](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/users/views.py#L13)
 
 Even with the naive implementation the brute force attack has been made more difficult: The hackpassword.py script trips the rate limiting, requests are denied with HTTP status 429 “Too many requests” and the script fails.
 
-The fix can be applied to the Django authentication module’s login view by calling the django-smart-ratelimit decorator and then passing the Django login view to the returned function as an argument.
+[PICTURE 3_2: hackpassword.py rejection log messages]
+
+Applying the rate limiter to the Django authentication module's built-in login view requires using the ratelimit decorator creatively. It requires calling the decorator function first with the arguments defining the rate limiter's parameters, and then calling the function returned by the decorator with the built-in view's as_view() result as the argument.
+
+- Adding the rate limiter to the built-in Django login view
+[/csb2025/urls.py#L23](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/csb2025/urls.py#L23)
+[/csb2025/urls.py#L33](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/csb2025/urls.py#L33)
+
+[PICTURE 3_3: rate limiting demonstrated in the browser]
 
 ## FLAW 4: Injection vulnerability
 
 ### A03:2021 – Injection and A05:2021 – Security Misconfiguration
 
 The system is designed to fetch dynamic content from the database to display. Since there was a requirement for the text to be “rich”, it was decided to save the data as HTML and to render it without escaping the HTML tags. However, a mistake was made in the implementation / configuration: The scope for the “autoescape off” block in detail.html contains the actual poll question text and poll choices, leading to an injection vulnerability. Any HTML will be parsed and Javascript will be run.
-// polls/templates/polls/detail.html
+
+[PICTURE 4_1: View from admin page showing html and Javascript]
+[PICTURE 4_2: YOU ARE HACKED]
+
+- Automatic escaping of variables turned off
+[/polls/templates/polls/detail.html#L12](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/detail.html#L12)
+- User-supplied data that is now displayed without filtering or escaping
+[/polls/templates/polls/detail.html#L21](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/detail.html#L21)
+[/polls/templates/polls/detail.html#L32](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/detail.html#L32)
+
 The clear fix is to make sure that “autoescape off” blocks are used only where absolutely needed, and that their scope is the minimum possible. In this case it is not even necessary to use a full block, it is sufficient to explicitly mark the wall_of_text data using the “|safe” filter.
+
+[PICTURE 4_3: Show that the hacking does not work now]
+
+- Remove the "autoescape off" and "endautoescape" template tags
+([/polls/templates/polls/detail.html#L12](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/detail.html#L12) and [/polls/templates/polls/detail.html#L39](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/detail.html#L39))
+- Mark the wall of text as safe
+[/polls/templates/polls/detail.html#L15](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/detail.html#L15)
 
 ## FLAW 5: CSRF – cross-site request forgery
 
@@ -72,7 +126,14 @@ Django has middleware designed to combat cross-site request in use when using th
 
 Unfortunately, a developer who is too clever for their own good and who for some reason likes GET requests can accidentally bypass CSRF protection by sending a form over as a GET request.
 
-// polls/templates/polls/newpoll_injection.html
-// polls/views.py#the injection one
+- Form method = "GET"
+[/polls/templates/polls/newpoll_injection.html#L8](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/templates/polls/newpoll_injection.html#L8)
+- View for processing the GET method form
+[/polls/views.py#L82](https://github.com/aniemela-cloud/csb2025-course-project-1/blob/main/polls/views.py#L82)
+
+[PICTURE 5_1: Show the manually crafted URL, guaranteeing there's no CSRF token in the "form"]
+[PICTURE 5_2: Show that the bypass worked and the new question is in the database]
 
 The fix for this flaw is simple: Do not implement GET requests that have side-effects. The new poll form that is submitted using a POST request implements CSRF protections by default.
+
+[PICTURE 5_3: Show that the GET crafting doesn't work with the POST method form]
