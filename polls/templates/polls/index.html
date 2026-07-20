@@ -13,7 +13,8 @@
     {% else %}
       <p><a href="{% url 'users:login' %}">Login</a></p>
     {% endif %}
-<!-- XXX Fix for A01:2021, A02:2021, and A07:2021 {% comment %}
+<!-- XXX Fix for A01:2021, A02:2021, and A07:2021 
+    {% comment %}
     {% if user.is_authenticated %}
     <p>
     <form action="{% url 'logout' %}" method="post">
@@ -35,8 +36,15 @@
           >{{ question.question_text }}</a
         >
         by {{ question.username }} 
-        {% if user.username == question.username %} (Pretend there's a delete link here) 
+        {% if request.COOKIES.username == question.username %} 
+          (Pretend there's a delete link here) 
         {% endif %}
+        {% comment "Dummy deletion link garnish based on Django authentication" %}
+        {% if user.username == question.username %}
+          (Pretend there's a delete link here) 
+        {% endif %}
+        {% endcomment %}
+        
       </li>
       {% endfor %}
     </ul>
