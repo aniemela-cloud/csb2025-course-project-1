@@ -6,7 +6,7 @@ from django.views import generic
 from django.utils import timezone
 # XXX A01/A02/A07 fix: decorator for requiring login for new poll
 #from django.contrib.auth.decorators import login_required
-from .models import Choice, Question
+from .models import Choice, Question, WallOfText
 from .forms import QuestionForm
 import logging
 
@@ -17,11 +17,23 @@ class IndexView(generic.ListView):
   context_object_name = "latest_question_list"
   def get_queryset(self):
     """Return the last five published questions."""
-    return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[:5]
+    return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")
 
+# TODO Need to replace this with a custom view in order to add WallOfText
 class DetailView(generic.DetailView):
   model = Question
   template_name = "polls/detail.html"
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    # Since this is a dummy example, we just bring in the
+    # first result from WallOfText
+    try:
+      wall_of_text = WallOfText.objects.get(pk=1)
+      context["wall_of_text"] = wall_of_text.text
+    except:
+      # if there is no wall of text, just put in a simple html block...except
+      context["wall_of_text"] = "<p>The wall is <em>EMPTY</em>...</p>"
+    return context
 
 class ResultsView(generic.DetailView):
   model = Question

@@ -5,4 +5,4 @@ from django_smart_ratelimit import ratelimit
 
 @ratelimit(key='ip', rate='10/m', block=True)
 class LimitedLoginView(LoginView):
-  pass
+  nex_page='/polls/'

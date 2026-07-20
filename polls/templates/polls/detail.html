@@ -6,10 +6,14 @@
   </head>
   <body>
     <!-- XXX Django's autoescape has been turned off as a simulated misconfiguration or
-     developer oversight -- or perhaps the developers intend to bring in data from another
-     data model which contains HTML, and instead of controlling only the autoescaping of that
-     single data source, they turn it of for everything. -->
+     developer oversight. The developers bring in some data from a database model to be
+     rendered as-is, with the thought that the data is safe since it is not user-supplied.
+     However, autoescape is left erroneously on even for display of user-supplied data.-->
     {% autoescape off %}
+    {{ wall_of_text }}
+    {% comment "Using |safe filter/marker" %}
+    {{ wall_of_text|safe }}
+    {% endcomment %}
     <form action="{% url 'polls:vote' question.id %}" method="post">
       {% csrf_token %}
       <fieldset>
