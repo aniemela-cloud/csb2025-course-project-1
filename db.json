@@ -1,1 +1,606 @@
-[{"model": "admin.logentry", "pk": 1, "fields": {"action_time": "2026-07-16T13:44:01.777Z", "user": 1, "content_type": 7, "object_id": "1", "object_repr": "What's up?", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Question text\"]}}]"}}, {"model": "admin.logentry", "pk": 2, "fields": {"action_time": "2026-07-16T14:37:06.616Z", "user": 1, "content_type": 7, "object_id": "2", "object_repr": "Second Question", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 3, "fields": {"action_time": "2026-07-16T14:51:16.316Z", "user": 1, "content_type": 7, "object_id": "2", "object_repr": "Second Question", "action_flag": 2, "change_message": "[{\"added\": {\"name\": \"choice\", \"object\": \"First Choice Second Question\"}}, {\"added\": {\"name\": \"choice\", \"object\": \"Second Choice Second Question\"}}]"}}, {"model": "admin.logentry", "pk": 4, "fields": {"action_time": "2026-07-17T13:21:40.627Z", "user": 1, "content_type": 9, "object_id": "1", "object_repr": "testuser (test@test.it)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 5, "fields": {"action_time": "2026-07-17T14:13:57.480Z", "user": 1, "content_type": 9, "object_id": "1", "object_repr": "testuser (test@test.it)", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Password\"]}}]"}}, {"model": "admin.logentry", "pk": 6, "fields": {"action_time": "2026-07-17T15:03:41.652Z", "user": 1, "content_type": 7, "object_id": "2", "object_repr": "Second Question", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"}}, {"model": "admin.logentry", "pk": 7, "fields": {"action_time": "2026-07-17T15:03:49.129Z", "user": 1, "content_type": 7, "object_id": "1", "object_repr": "What's up?", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"}}, {"model": "admin.logentry", "pk": 8, "fields": {"action_time": "2026-07-18T14:14:24.789Z", "user": 1, "content_type": 3, "object_id": "1", "object_repr": "Poll users", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 9, "fields": {"action_time": "2026-07-18T14:14:58.082Z", "user": 1, "content_type": 4, "object_id": "2", "object_repr": "djangotest", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 10, "fields": {"action_time": "2026-07-18T14:15:58.530Z", "user": 1, "content_type": 4, "object_id": "2", "object_repr": "djangotest", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Groups\"]}}]"}}, {"model": "admin.logentry", "pk": 11, "fields": {"action_time": "2026-07-18T14:36:52.856Z", "user": 1, "content_type": 4, "object_id": "2", "object_repr": "djangotest", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"}}, {"model": "admin.logentry", "pk": 12, "fields": {"action_time": "2026-07-20T11:49:07.553Z", "user": 1, "content_type": 23, "object_id": "1", "object_repr": "WallOfText object (1)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 13, "fields": {"action_time": "2026-07-20T12:13:04.027Z", "user": 1, "content_type": 7, "object_id": "3", "object_repr": "I am hackman", "action_flag": 2, "change_message": "[{\"changed\": {\"name\": \"choice\", \"object\": \"<p onmouseover=\\\"alert('HACKED!')\\\">IDK some HTML?</p>\", \"fields\": [\"Choice text\"]}}]"}}, {"model": "auth.permission", "pk": 1, "fields": {"name": "Can add log entry", "content_type": 1, "codename": "add_logentry"}}, {"model": "auth.permission", "pk": 2, "fields": {"name": "Can change log entry", "content_type": 1, "codename": "change_logentry"}}, {"model": "auth.permission", "pk": 3, "fields": {"name": "Can delete log entry", "content_type": 1, "codename": "delete_logentry"}}, {"model": "auth.permission", "pk": 4, "fields": {"name": "Can view log entry", "content_type": 1, "codename": "view_logentry"}}, {"model": "auth.permission", "pk": 5, "fields": {"name": "Can add permission", "content_type": 2, "codename": "add_permission"}}, {"model": "auth.permission", "pk": 6, "fields": {"name": "Can change permission", "content_type": 2, "codename": "change_permission"}}, {"model": "auth.permission", "pk": 7, "fields": {"name": "Can delete permission", "content_type": 2, "codename": "delete_permission"}}, {"model": "auth.permission", "pk": 8, "fields": {"name": "Can view permission", "content_type": 2, "codename": "view_permission"}}, {"model": "auth.permission", "pk": 9, "fields": {"name": "Can add group", "content_type": 3, "codename": "add_group"}}, {"model": "auth.permission", "pk": 10, "fields": {"name": "Can change group", "content_type": 3, "codename": "change_group"}}, {"model": "auth.permission", "pk": 11, "fields": {"name": "Can delete group", "content_type": 3, "codename": "delete_group"}}, {"model": "auth.permission", "pk": 12, "fields": {"name": "Can view group", "content_type": 3, "codename": "view_group"}}, {"model": "auth.permission", "pk": 13, "fields": {"name": "Can add user", "content_type": 4, "codename": "add_user"}}, {"model": "auth.permission", "pk": 14, "fields": {"name": "Can change user", "content_type": 4, "codename": "change_user"}}, {"model": "auth.permission", "pk": 15, "fields": {"name": "Can delete user", "content_type": 4, "codename": "delete_user"}}, {"model": "auth.permission", "pk": 16, "fields": {"name": "Can view user", "content_type": 4, "codename": "view_user"}}, {"model": "auth.permission", "pk": 17, "fields": {"name": "Can add content type", "content_type": 5, "codename": "add_contenttype"}}, {"model": "auth.permission", "pk": 18, "fields": {"name": "Can change content type", "content_type": 5, "codename": "change_contenttype"}}, {"model": "auth.permission", "pk": 19, "fields": {"name": "Can delete content type", "content_type": 5, "codename": "delete_contenttype"}}, {"model": "auth.permission", "pk": 20, "fields": {"name": "Can view content type", "content_type": 5, "codename": "view_contenttype"}}, {"model": "auth.permission", "pk": 21, "fields": {"name": "Can add session", "content_type": 6, "codename": "add_session"}}, {"model": "auth.permission", "pk": 22, "fields": {"name": "Can change session", "content_type": 6, "codename": "change_session"}}, {"model": "auth.permission", "pk": 23, "fields": {"name": "Can delete session", "content_type": 6, "codename": "delete_session"}}, {"model": "auth.permission", "pk": 24, "fields": {"name": "Can view session", "content_type": 6, "codename": "view_session"}}, {"model": "auth.permission", "pk": 25, "fields": {"name": "Can add question", "content_type": 7, "codename": "add_question"}}, {"model": "auth.permission", "pk": 26, "fields": {"name": "Can change question", "content_type": 7, "codename": "change_question"}}, {"model": "auth.permission", "pk": 27, "fields": {"name": "Can delete question", "content_type": 7, "codename": "delete_question"}}, {"model": "auth.permission", "pk": 28, "fields": {"name": "Can view question", "content_type": 7, "codename": "view_question"}}, {"model": "auth.permission", "pk": 29, "fields": {"name": "Can add choice", "content_type": 8, "codename": "add_choice"}}, {"model": "auth.permission", "pk": 30, "fields": {"name": "Can change choice", "content_type": 8, "codename": "change_choice"}}, {"model": "auth.permission", "pk": 31, "fields": {"name": "Can delete choice", "content_type": 8, "codename": "delete_choice"}}, {"model": "auth.permission", "pk": 32, "fields": {"name": "Can view choice", "content_type": 8, "codename": "view_choice"}}, {"model": "auth.permission", "pk": 33, "fields": {"name": "Can add user", "content_type": 9, "codename": "add_user"}}, {"model": "auth.permission", "pk": 34, "fields": {"name": "Can change user", "content_type": 9, "codename": "change_user"}}, {"model": "auth.permission", "pk": 35, "fields": {"name": "Can delete user", "content_type": 9, "codename": "delete_user"}}, {"model": "auth.permission", "pk": 36, "fields": {"name": "Can view user", "content_type": 9, "codename": "view_user"}}, {"model": "auth.permission", "pk": 37, "fields": {"name": "Can add Rate Limit Counter", "content_type": 13, "codename": "add_ratelimitcounter"}}, {"model": "auth.permission", "pk": 38, "fields": {"name": "Can change Rate Limit Counter", "content_type": 13, "codename": "change_ratelimitcounter"}}, {"model": "auth.permission", "pk": 39, "fields": {"name": "Can delete Rate Limit Counter", "content_type": 13, "codename": "delete_ratelimitcounter"}}, {"model": "auth.permission", "pk": 40, "fields": {"name": "Can view Rate Limit Counter", "content_type": 13, "codename": "view_ratelimitcounter"}}, {"model": "auth.permission", "pk": 41, "fields": {"name": "Can add Rate Limit Entry", "content_type": 14, "codename": "add_ratelimitentry"}}, {"model": "auth.permission", "pk": 42, "fields": {"name": "Can change Rate Limit Entry", "content_type": 14, "codename": "change_ratelimitentry"}}, {"model": "auth.permission", "pk": 43, "fields": {"name": "Can delete Rate Limit Entry", "content_type": 14, "codename": "delete_ratelimitentry"}}, {"model": "auth.permission", "pk": 44, "fields": {"name": "Can view Rate Limit Entry", "content_type": 14, "codename": "view_ratelimitentry"}}, {"model": "auth.permission", "pk": 45, "fields": {"name": "Can add Rate Limit Token Bucket", "content_type": 18, "codename": "add_ratelimittokenbucket"}}, {"model": "auth.permission", "pk": 46, "fields": {"name": "Can change Rate Limit Token Bucket", "content_type": 18, "codename": "change_ratelimittokenbucket"}}, {"model": "auth.permission", "pk": 47, "fields": {"name": "Can delete Rate Limit Token Bucket", "content_type": 18, "codename": "delete_ratelimittokenbucket"}}, {"model": "auth.permission", "pk": 48, "fields": {"name": "Can view Rate Limit Token Bucket", "content_type": 18, "codename": "view_ratelimittokenbucket"}}, {"model": "auth.permission", "pk": 49, "fields": {"name": "Can add Rate Limit Leaky Bucket", "content_type": 16, "codename": "add_ratelimitleakybucket"}}, {"model": "auth.permission", "pk": 50, "fields": {"name": "Can change Rate Limit Leaky Bucket", "content_type": 16, "codename": "change_ratelimitleakybucket"}}, {"model": "auth.permission", "pk": 51, "fields": {"name": "Can delete Rate Limit Leaky Bucket", "content_type": 16, "codename": "delete_ratelimitleakybucket"}}, {"model": "auth.permission", "pk": 52, "fields": {"name": "Can view Rate Limit Leaky Bucket", "content_type": 16, "codename": "view_ratelimitleakybucket"}}, {"model": "auth.permission", "pk": 53, "fields": {"name": "Can add rate limit rule", "content_type": 17, "codename": "add_ratelimitrule"}}, {"model": "auth.permission", "pk": 54, "fields": {"name": "Can change rate limit rule", "content_type": 17, "codename": "change_ratelimitrule"}}, {"model": "auth.permission", "pk": 55, "fields": {"name": "Can delete rate limit rule", "content_type": 17, "codename": "delete_ratelimitrule"}}, {"model": "auth.permission", "pk": 56, "fields": {"name": "Can view rate limit rule", "content_type": 17, "codename": "view_ratelimitrule"}}, {"model": "auth.permission", "pk": 57, "fields": {"name": "Can add user tier", "content_type": 21, "codename": "add_usertier"}}, {"model": "auth.permission", "pk": 58, "fields": {"name": "Can change user tier", "content_type": 21, "codename": "change_usertier"}}, {"model": "auth.permission", "pk": 59, "fields": {"name": "Can delete user tier", "content_type": 21, "codename": "delete_usertier"}}, {"model": "auth.permission", "pk": 60, "fields": {"name": "Can view user tier", "content_type": 21, "codename": "view_usertier"}}, {"model": "auth.permission", "pk": 61, "fields": {"name": "Can add user rate limit override", "content_type": 20, "codename": "add_userratelimitoverride"}}, {"model": "auth.permission", "pk": 62, "fields": {"name": "Can change user rate limit override", "content_type": 20, "codename": "change_userratelimitoverride"}}, {"model": "auth.permission", "pk": 63, "fields": {"name": "Can delete user rate limit override", "content_type": 20, "codename": "delete_userratelimitoverride"}}, {"model": "auth.permission", "pk": 64, "fields": {"name": "Can view user rate limit override", "content_type": 20, "codename": "view_userratelimitoverride"}}, {"model": "auth.permission", "pk": 65, "fields": {"name": "Can add group rate limit", "content_type": 11, "codename": "add_groupratelimit"}}, {"model": "auth.permission", "pk": 66, "fields": {"name": "Can change group rate limit", "content_type": 11, "codename": "change_groupratelimit"}}, {"model": "auth.permission", "pk": 67, "fields": {"name": "Can delete group rate limit", "content_type": 11, "codename": "delete_groupratelimit"}}, {"model": "auth.permission", "pk": 68, "fields": {"name": "Can view group rate limit", "content_type": 11, "codename": "view_groupratelimit"}}, {"model": "auth.permission", "pk": 69, "fields": {"name": "Can add api key", "content_type": 10, "codename": "add_apikey"}}, {"model": "auth.permission", "pk": 70, "fields": {"name": "Can change api key", "content_type": 10, "codename": "change_apikey"}}, {"model": "auth.permission", "pk": 71, "fields": {"name": "Can delete api key", "content_type": 10, "codename": "delete_apikey"}}, {"model": "auth.permission", "pk": 72, "fields": {"name": "Can view api key", "content_type": 10, "codename": "view_apikey"}}, {"model": "auth.permission", "pk": 73, "fields": {"name": "Can add user tier assignment", "content_type": 22, "codename": "add_usertierassignment"}}, {"model": "auth.permission", "pk": 74, "fields": {"name": "Can change user tier assignment", "content_type": 22, "codename": "change_usertierassignment"}}, {"model": "auth.permission", "pk": 75, "fields": {"name": "Can delete user tier assignment", "content_type": 22, "codename": "delete_usertierassignment"}}, {"model": "auth.permission", "pk": 76, "fields": {"name": "Can view user tier assignment", "content_type": 22, "codename": "view_usertierassignment"}}, {"model": "auth.permission", "pk": 77, "fields": {"name": "Can add rate limit event", "content_type": 15, "codename": "add_ratelimitevent"}}, {"model": "auth.permission", "pk": 78, "fields": {"name": "Can change rate limit event", "content_type": 15, "codename": "change_ratelimitevent"}}, {"model": "auth.permission", "pk": 79, "fields": {"name": "Can delete rate limit event", "content_type": 15, "codename": "delete_ratelimitevent"}}, {"model": "auth.permission", "pk": 80, "fields": {"name": "Can view rate limit event", "content_type": 15, "codename": "view_ratelimitevent"}}, {"model": "auth.permission", "pk": 81, "fields": {"name": "Can add tenant quota", "content_type": 19, "codename": "add_tenantquota"}}, {"model": "auth.permission", "pk": 82, "fields": {"name": "Can change tenant quota", "content_type": 19, "codename": "change_tenantquota"}}, {"model": "auth.permission", "pk": 83, "fields": {"name": "Can delete tenant quota", "content_type": 19, "codename": "delete_tenantquota"}}, {"model": "auth.permission", "pk": 84, "fields": {"name": "Can view tenant quota", "content_type": 19, "codename": "view_tenantquota"}}, {"model": "auth.permission", "pk": 85, "fields": {"name": "Can add quota", "content_type": 12, "codename": "add_quota"}}, {"model": "auth.permission", "pk": 86, "fields": {"name": "Can change quota", "content_type": 12, "codename": "change_quota"}}, {"model": "auth.permission", "pk": 87, "fields": {"name": "Can delete quota", "content_type": 12, "codename": "delete_quota"}}, {"model": "auth.permission", "pk": 88, "fields": {"name": "Can view quota", "content_type": 12, "codename": "view_quota"}}, {"model": "auth.permission", "pk": 89, "fields": {"name": "Can add wall of text", "content_type": 23, "codename": "add_walloftext"}}, {"model": "auth.permission", "pk": 90, "fields": {"name": "Can change wall of text", "content_type": 23, "codename": "change_walloftext"}}, {"model": "auth.permission", "pk": 91, "fields": {"name": "Can delete wall of text", "content_type": 23, "codename": "delete_walloftext"}}, {"model": "auth.permission", "pk": 92, "fields": {"name": "Can view wall of text", "content_type": 23, "codename": "view_walloftext"}}, {"model": "auth.group", "pk": 1, "fields": {"name": "Poll users", "permissions": [29, 30, 31, 32, 25, 26, 27, 28]}}, {"model": "auth.user", "pk": 1, "fields": {"password": "pbkdf2_sha256$1000000$VmgxdKxJJ2qesyBsjily3j$Sg6TXLwy63s7GT1T/D83C9h2QEvPfVGy9h/t1CUQ+ZQ=", "last_login": "2026-07-18T11:43:38.564Z", "is_superuser": true, "username": "admin", "first_name": "", "last_name": "", "email": "aniemela@gmail.com", "is_staff": true, "is_active": true, "date_joined": "2026-07-16T13:41:12.271Z", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 2, "fields": {"password": "pbkdf2_sha256$1200000$EAIymHQKXxbu9t6XxNWM3j$cwxXOtLIE2wlvabJoCoeYBkP/y4FCEGFRPhlMkvw/Os=", "last_login": "2026-07-20T15:00:06.671Z", "is_superuser": false, "username": "djangotest", "first_name": "Django", "last_name": "Tester", "email": "tester@test.ing.it", "is_staff": false, "is_active": true, "date_joined": "2026-07-18T14:14:57Z", "groups": [1], "user_permissions": []}}, {"model": "contenttypes.contenttype", "pk": 1, "fields": {"app_label": "admin", "model": "logentry"}}, {"model": "contenttypes.contenttype", "pk": 2, "fields": {"app_label": "auth", "model": "permission"}}, {"model": "contenttypes.contenttype", "pk": 3, "fields": {"app_label": "auth", "model": "group"}}, {"model": "contenttypes.contenttype", "pk": 4, "fields": {"app_label": "auth", "model": "user"}}, {"model": "contenttypes.contenttype", "pk": 5, "fields": {"app_label": "contenttypes", "model": "contenttype"}}, {"model": "contenttypes.contenttype", "pk": 6, "fields": {"app_label": "sessions", "model": "session"}}, {"model": "contenttypes.contenttype", "pk": 7, "fields": {"app_label": "polls", "model": "question"}}, {"model": "contenttypes.contenttype", "pk": 8, "fields": {"app_label": "polls", "model": "choice"}}, {"model": "contenttypes.contenttype", "pk": 9, "fields": {"app_label": "users", "model": "user"}}, {"model": "contenttypes.contenttype", "pk": 10, "fields": {"app_label": "django_smart_ratelimit", "model": "apikey"}}, {"model": "contenttypes.contenttype", "pk": 11, "fields": {"app_label": "django_smart_ratelimit", "model": "groupratelimit"}}, {"model": "contenttypes.contenttype", "pk": 12, "fields": {"app_label": "django_smart_ratelimit", "model": "quota"}}, {"model": "contenttypes.contenttype", "pk": 13, "fields": {"app_label": "django_smart_ratelimit", "model": "ratelimitcounter"}}, {"model": "contenttypes.contenttype", "pk": 14, "fields": {"app_label": "django_smart_ratelimit", "model": "ratelimitentry"}}, {"model": "contenttypes.contenttype", "pk": 15, "fields": {"app_label": "django_smart_ratelimit", "model": "ratelimitevent"}}, {"model": "contenttypes.contenttype", "pk": 16, "fields": {"app_label": "django_smart_ratelimit", "model": "ratelimitleakybucket"}}, {"model": "contenttypes.contenttype", "pk": 17, "fields": {"app_label": "django_smart_ratelimit", "model": "ratelimitrule"}}, {"model": "contenttypes.contenttype", "pk": 18, "fields": {"app_label": "django_smart_ratelimit", "model": "ratelimittokenbucket"}}, {"model": "contenttypes.contenttype", "pk": 19, "fields": {"app_label": "django_smart_ratelimit", "model": "tenantquota"}}, {"model": "contenttypes.contenttype", "pk": 20, "fields": {"app_label": "django_smart_ratelimit", "model": "userratelimitoverride"}}, {"model": "contenttypes.contenttype", "pk": 21, "fields": {"app_label": "django_smart_ratelimit", "model": "usertier"}}, {"model": "contenttypes.contenttype", "pk": 22, "fields": {"app_label": "django_smart_ratelimit", "model": "usertierassignment"}}, {"model": "contenttypes.contenttype", "pk": 23, "fields": {"app_label": "polls", "model": "walloftext"}}, {"model": "sessions.session", "pk": "cbldqb1cg8ax5wth6hseacd9mxwq27lz", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSHAwIAu3fcbyPCSqoGktCvjv2uTLnR7zzn3xTxta_XbyIufE7swyU6_W6D4yG0H6U7t1nnsbV3mwHeFH3Twqaf8vB7u30GlUb-1ABeMLVrYIkBYjIhoMZFLwlmRlZMOtEkFC8piDaBUxqkASEpDgTN7fwCqNTY0:1wl3SE:mEWS6hM_B3mLBcsbRvmW2tbXPkurMhgt_2aNBufYe4o", "expire_date": "2026-08-01T11:43:38.568Z"}}, {"model": "sessions.session", "pk": "cyzus3tp0q7o62xdka6id5dlfpffkpm3", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSHAwIAu3fcbyPCSqoGktCvjv2uTLnR7zzn3xTxta_XbyIufE7swyU6_W6D4yG0H6U7t1nnsbV3mwHeFH3Twqaf8vB7u30GlUb-1ABeMLVrYIkBYjIhoMZFLwlmRlZMOtEkFC8piDaBUxqkASEpDgTN7fwCqNTY0:1wl69s:o1TWN9X8kJzdUSfsFessFn3lqZuyTJ4eO1m7acv50AM", "expire_date": "2026-08-01T14:36:52.877Z"}}, {"model": "sessions.session", "pk": "qs3hfb0iqcrfp8z6vz0jgihdbz9v6ju1", "fields": {"session_data": ".eJxVjDsOwyAQBe9CHSE-BkPK9D4DWpYlOIlAMnYV5e6xJRdJOzPvvVmAbS1h67SEObErU-zyyyLgk-oh0gPqvXFsdV3myI-En7bzqSV63c7276BAL_sapHLGpywjRm0GlZ3PzkocgXxG5RIOIL2w0XvIVkgBozGk9Y51RCL2-QLuCThl:1wlpTS:FDpsT0kVT_sNslUCEQwvSqGfHdZB4oVSLnuw4o10A2k", "expire_date": "2026-08-03T15:00:06.676Z"}}, {"model": "polls.question", "pk": 1, "fields": {"question_text": "What's up?", "pub_date": "2026-07-16T13:35:41Z", "username": "otheruser"}}, {"model": "polls.question", "pk": 2, "fields": {"question_text": "Second Question", "pub_date": "2026-07-16T14:37:05Z", "username": "testuser"}}, {"model": "polls.question", "pk": 3, "fields": {"question_text": "I am hackman", "pub_date": "2026-07-17T15:40:48Z", "username": "otheruser"}}, {"model": "polls.question", "pk": 4, "fields": {"question_text": "Test <p>this</p>", "pub_date": "2026-07-18T10:23:57.140Z", "username": "otheruser"}}, {"model": "polls.question", "pk": 5, "fields": {"question_text": "GET this", "pub_date": "2026-07-18T14:01:58.085Z", "username": "otheruser"}}, {"model": "polls.question", "pk": 6, "fields": {"question_text": "CSRF Bypassed", "pub_date": "2026-07-18T14:03:42.323Z", "username": "otheruser"}}, {"model": "polls.question", "pk": 7, "fields": {"question_text": "A good question", "pub_date": "2026-07-18T15:31:21.223Z", "username": "djangotest"}}, {"model": "polls.question", "pk": 8, "fields": {"question_text": "Very good question", "pub_date": "2026-07-18T15:31:52.039Z", "username": "djangotest"}}, {"model": "polls.choice", "pk": 1, "fields": {"question": 1, "choice_text": "Not much", "votes": 0}}, {"model": "polls.choice", "pk": 2, "fields": {"question": 1, "choice_text": "Something blue", "votes": 0}}, {"model": "polls.choice", "pk": 4, "fields": {"question": 2, "choice_text": "First Choice Second Question", "votes": 0}}, {"model": "polls.choice", "pk": 5, "fields": {"question": 2, "choice_text": "Second Choice Second Question", "votes": 0}}, {"model": "polls.choice", "pk": 6, "fields": {"question": 3, "choice_text": "This is HACKED", "votes": 0}}, {"model": "polls.choice", "pk": 7, "fields": {"question": 3, "choice_text": "<p onmouseover=\"alert('HACKED!')\">IDK some HTML?</p>", "votes": 1}}, {"model": "polls.choice", "pk": 8, "fields": {"question": 3, "choice_text": "⌚", "votes": 0}}, {"model": "polls.choice", "pk": 9, "fields": {"question": 4, "choice_text": "Aaa", "votes": 0}}, {"model": "polls.choice", "pk": 10, "fields": {"question": 4, "choice_text": "Bbb", "votes": 0}}, {"model": "polls.choice", "pk": 11, "fields": {"question": 5, "choice_text": "AAA", "votes": 0}}, {"model": "polls.choice", "pk": 12, "fields": {"question": 5, "choice_text": "BBB", "votes": 0}}, {"model": "polls.choice", "pk": 13, "fields": {"question": 6, "choice_text": "Haha", "votes": 0}}, {"model": "polls.choice", "pk": 14, "fields": {"question": 6, "choice_text": "Lol", "votes": 0}}, {"model": "polls.choice", "pk": 15, "fields": {"question": 7, "choice_text": "An excellent option", "votes": 0}}, {"model": "polls.choice", "pk": 16, "fields": {"question": 7, "choice_text": "Another good option", "votes": 0}}, {"model": "polls.choice", "pk": 17, "fields": {"question": 7, "choice_text": "Third option is here too", "votes": 0}}, {"model": "polls.choice", "pk": 18, "fields": {"question": 8, "choice_text": "Decent option", "votes": 0}}, {"model": "polls.choice", "pk": 19, "fields": {"question": 8, "choice_text": "A good option", "votes": 0}}, {"model": "polls.choice", "pk": 20, "fields": {"question": 8, "choice_text": "A poor, third option", "votes": 0}}, {"model": "polls.walloftext", "pk": 1, "fields": {"text": "<h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1><p> Cras ut enim ultricies, iaculis justo sed, semper neque. Curabitur iaculis tempor laoreet. Nullam luctus urna vel urna convallis, eu blandit est pulvinar. Etiam pharetra nulla ante, eu cursus mi suscipit id. Morbi bibendum, lectus eget finibus consectetur, mauris nibh fringilla velit, a posuere augue massa ac dolor. Duis non nibh venenatis, lacinia ante sed, varius orci. Vestibulum id faucibus nisl. Praesent volutpat nisl vitae sapien mattis cursus. Nulla posuere consequat arcu et fringilla. Proin dapibus eu massa in volutpat.</p>"}}, {"model": "users.user", "pk": 1, "fields": {"username": "testuser", "password": "84573e655d30b8f44863d3ee6998d228", "name": "Test User", "email": "test@test.it"}}]
+[
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Poll users",
+    "permissions": [
+      [
+        "add_choice",
+        "polls",
+        "choice"
+      ],
+      [
+        "change_choice",
+        "polls",
+        "choice"
+      ],
+      [
+        "delete_choice",
+        "polls",
+        "choice"
+      ],
+      [
+        "view_choice",
+        "polls",
+        "choice"
+      ],
+      [
+        "add_question",
+        "polls",
+        "question"
+      ],
+      [
+        "change_question",
+        "polls",
+        "question"
+      ],
+      [
+        "delete_question",
+        "polls",
+        "question"
+      ],
+      [
+        "view_question",
+        "polls",
+        "question"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$VmgxdKxJJ2qesyBsjily3j$Sg6TXLwy63s7GT1T/D83C9h2QEvPfVGy9h/t1CUQ+ZQ=",
+    "last_login": "2026-07-18T11:43:38.564Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "aniemela@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-16T13:41:12.271Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$EAIymHQKXxbu9t6XxNWM3j$cwxXOtLIE2wlvabJoCoeYBkP/y4FCEGFRPhlMkvw/Os=",
+    "last_login": "2026-07-20T15:00:06.671Z",
+    "is_superuser": false,
+    "username": "djangotest",
+    "first_name": "Django",
+    "last_name": "Tester",
+    "email": "tester@test.ing.it",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-18T14:14:57Z",
+    "groups": [
+      [
+        "Poll users"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cbldqb1cg8ax5wth6hseacd9mxwq27lz",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHAwIAu3fcbyPCSqoGktCvjv2uTLnR7zzn3xTxta_XbyIufE7swyU6_W6D4yG0H6U7t1nnsbV3mwHeFH3Twqaf8vB7u30GlUb-1ABeMLVrYIkBYjIhoMZFLwlmRlZMOtEkFC8piDaBUxqkASEpDgTN7fwCqNTY0:1wl3SE:mEWS6hM_B3mLBcsbRvmW2tbXPkurMhgt_2aNBufYe4o",
+    "expire_date": "2026-08-01T11:43:38.568Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cyzus3tp0q7o62xdka6id5dlfpffkpm3",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHAwIAu3fcbyPCSqoGktCvjv2uTLnR7zzn3xTxta_XbyIufE7swyU6_W6D4yG0H6U7t1nnsbV3mwHeFH3Twqaf8vB7u30GlUb-1ABeMLVrYIkBYjIhoMZFLwlmRlZMOtEkFC8piDaBUxqkASEpDgTN7fwCqNTY0:1wl69s:o1TWN9X8kJzdUSfsFessFn3lqZuyTJ4eO1m7acv50AM",
+    "expire_date": "2026-08-01T14:36:52.877Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qs3hfb0iqcrfp8z6vz0jgihdbz9v6ju1",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSE-BkPK9D4DWpYlOIlAMnYV5e6xJRdJOzPvvVmAbS1h67SEObErU-zyyyLgk-oh0gPqvXFsdV3myI-En7bzqSV63c7276BAL_sapHLGpywjRm0GlZ3PzkocgXxG5RIOIL2w0XvIVkgBozGk9Y51RCL2-QLuCThl:1wlpTS:FDpsT0kVT_sNslUCEQwvSqGfHdZB4oVSLnuw4o10A2k",
+    "expire_date": "2026-08-03T15:00:06.676Z"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 1,
+  "fields": {
+    "question_text": "What's up?",
+    "pub_date": "2026-07-16T13:35:41Z",
+    "username": "otheruser"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 2,
+  "fields": {
+    "question_text": "Second Question",
+    "pub_date": "2026-07-16T14:37:05Z",
+    "username": "testuser"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 3,
+  "fields": {
+    "question_text": "I am hackman",
+    "pub_date": "2026-07-17T15:40:48Z",
+    "username": "otheruser"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 4,
+  "fields": {
+    "question_text": "Test <p>this</p>",
+    "pub_date": "2026-07-18T10:23:57.140Z",
+    "username": "otheruser"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 5,
+  "fields": {
+    "question_text": "GET this",
+    "pub_date": "2026-07-18T14:01:58.085Z",
+    "username": "otheruser"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 6,
+  "fields": {
+    "question_text": "CSRF Bypassed",
+    "pub_date": "2026-07-18T14:03:42.323Z",
+    "username": "otheruser"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 7,
+  "fields": {
+    "question_text": "A good question",
+    "pub_date": "2026-07-18T15:31:21.223Z",
+    "username": "djangotest"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 8,
+  "fields": {
+    "question_text": "Very good question",
+    "pub_date": "2026-07-18T15:31:52.039Z",
+    "username": "djangotest"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "choice_text": "Not much",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 2,
+  "fields": {
+    "question": 1,
+    "choice_text": "Something blue",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 4,
+  "fields": {
+    "question": 2,
+    "choice_text": "First Choice Second Question",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 5,
+  "fields": {
+    "question": 2,
+    "choice_text": "Second Choice Second Question",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 6,
+  "fields": {
+    "question": 3,
+    "choice_text": "This is HACKED",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 7,
+  "fields": {
+    "question": 3,
+    "choice_text": "<p onmouseover=\"alert('HACKED!')\">IDK some HTML?</p>",
+    "votes": 1
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 8,
+  "fields": {
+    "question": 3,
+    "choice_text": "⌚",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 9,
+  "fields": {
+    "question": 4,
+    "choice_text": "Aaa",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 10,
+  "fields": {
+    "question": 4,
+    "choice_text": "Bbb",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 11,
+  "fields": {
+    "question": 5,
+    "choice_text": "AAA",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 12,
+  "fields": {
+    "question": 5,
+    "choice_text": "BBB",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 13,
+  "fields": {
+    "question": 6,
+    "choice_text": "Haha",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 14,
+  "fields": {
+    "question": 6,
+    "choice_text": "Lol",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 15,
+  "fields": {
+    "question": 7,
+    "choice_text": "An excellent option",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 16,
+  "fields": {
+    "question": 7,
+    "choice_text": "Another good option",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 17,
+  "fields": {
+    "question": 7,
+    "choice_text": "Third option is here too",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 18,
+  "fields": {
+    "question": 8,
+    "choice_text": "Decent option",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 19,
+  "fields": {
+    "question": 8,
+    "choice_text": "A good option",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 20,
+  "fields": {
+    "question": 8,
+    "choice_text": "A poor, third option",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.walloftext",
+  "pk": 1,
+  "fields": {
+    "text": "<h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1><p> Cras ut enim ultricies, iaculis justo sed, semper neque. Curabitur iaculis tempor laoreet. Nullam luctus urna vel urna convallis, eu blandit est pulvinar. Etiam pharetra nulla ante, eu cursus mi suscipit id. Morbi bibendum, lectus eget finibus consectetur, mauris nibh fringilla velit, a posuere augue massa ac dolor. Duis non nibh venenatis, lacinia ante sed, varius orci. Vestibulum id faucibus nisl. Praesent volutpat nisl vitae sapien mattis cursus. Nulla posuere consequat arcu et fringilla. Proin dapibus eu massa in volutpat.</p>"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "username": "testuser",
+    "password": "84573e655d30b8f44863d3ee6998d228",
+    "name": "Test User",
+    "email": "test@test.it"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-07-16T13:44:01.777Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "polls",
+      "question"
+    ],
+    "object_id": "1",
+    "object_repr": "What's up?",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-07-16T14:37:06.616Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "polls",
+      "question"
+    ],
+    "object_id": "2",
+    "object_repr": "Second Question",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-07-16T14:51:16.316Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "polls",
+      "question"
+    ],
+    "object_id": "2",
+    "object_repr": "Second Question",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"choice\", \"object\": \"First Choice Second Question\"}}, {\"added\": {\"name\": \"choice\", \"object\": \"Second Choice Second Question\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-07-17T13:21:40.627Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "1",
+    "object_repr": "testuser (test@test.it)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-07-17T14:13:57.480Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "1",
+    "object_repr": "testuser (test@test.it)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-07-17T15:03:41.652Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "polls",
+      "question"
+    ],
+    "object_id": "2",
+    "object_repr": "Second Question",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-07-17T15:03:49.129Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "polls",
+      "question"
+    ],
+    "object_id": "1",
+    "object_repr": "What's up?",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-07-18T14:14:24.789Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "1",
+    "object_repr": "Poll users",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2026-07-18T14:14:58.082Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "djangotest",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-07-18T14:15:58.530Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "djangotest",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2026-07-18T14:36:52.856Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "djangotest",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-07-20T11:49:07.553Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "polls",
+      "walloftext"
+    ],
+    "object_id": "1",
+    "object_repr": "WallOfText object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2026-07-20T12:13:04.027Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "polls",
+      "question"
+    ],
+    "object_id": "3",
+    "object_repr": "I am hackman",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"choice\", \"object\": \"<p onmouseover=\\\"alert('HACKED!')\\\">IDK some HTML?</p>\", \"fields\": [\"Choice text\"]}}]"
+  }
+}
+]
